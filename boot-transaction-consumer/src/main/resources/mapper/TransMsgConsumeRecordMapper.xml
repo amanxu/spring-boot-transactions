@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trans.consumer.mapper.TransMsgConsumeRecordMapper">
+  <resultMap id="BaseResultMap" type="com.trans.consumer.model.TransMsgConsumeRecord">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="topic" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_body" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="born_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="store_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="reconsume_times" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="queue_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sys_flag" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="trans_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="trans_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_keys" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_is_tran" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="msg_tran_check_times" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="msg_uniq_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_is_wait" javaType="java.lang.Boolean" jdbcType="BIT" />
+      <arg column="msg_group" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_tags" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="msg_real_queue_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="biz_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, topic, flag, msg_body, msg_id, born_time, store_time, reconsume_times, queue_id, 
+    sys_flag, trans_id, trans_state, msg_keys, msg_is_tran, msg_tran_check_times, msg_uniq_key, 
+    msg_is_wait, msg_group, msg_tags, msg_real_queue_id, biz_type, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trans_msg_consume_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trans_msg_consume_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.trans.consumer.model.TransMsgConsumeRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into trans_msg_consume_record (id, topic, flag, 
+      msg_body, msg_id, born_time, 
+      store_time, reconsume_times, queue_id, 
+      sys_flag, trans_id, trans_state, 
+      msg_keys, msg_is_tran, msg_tran_check_times, 
+      msg_uniq_key, msg_is_wait, msg_group, 
+      msg_tags, msg_real_queue_id, biz_type, 
+      create_time, update_time)
+    values (#{id,jdbcType=BIGINT}, #{topic,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, 
+      #{msgBody,jdbcType=VARCHAR}, #{msgId,jdbcType=VARCHAR}, #{bornTime,jdbcType=TIMESTAMP}, 
+      #{storeTime,jdbcType=TIMESTAMP}, #{reconsumeTimes,jdbcType=INTEGER}, #{queueId,jdbcType=INTEGER}, 
+      #{sysFlag,jdbcType=INTEGER}, #{transId,jdbcType=VARCHAR}, #{transState,jdbcType=INTEGER}, 
+      #{msgKeys,jdbcType=VARCHAR}, #{msgIsTran,jdbcType=BIT}, #{msgTranCheckTimes,jdbcType=INTEGER}, 
+      #{msgUniqKey,jdbcType=VARCHAR}, #{msgIsWait,jdbcType=BIT}, #{msgGroup,jdbcType=VARCHAR}, 
+      #{msgTags,jdbcType=VARCHAR}, #{msgRealQueueId,jdbcType=INTEGER}, #{bizType,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.trans.consumer.model.TransMsgConsumeRecord" useGeneratedKeys="true" keyProperty="id">
+    insert into trans_msg_consume_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="topic != null">
+        topic,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="msgBody != null">
+        msg_body,
+      </if>
+      <if test="msgId != null">
+        msg_id,
+      </if>
+      <if test="bornTime != null">
+        born_time,
+      </if>
+      <if test="storeTime != null">
+        store_time,
+      </if>
+      <if test="reconsumeTimes != null">
+        reconsume_times,
+      </if>
+      <if test="queueId != null">
+        queue_id,
+      </if>
+      <if test="sysFlag != null">
+        sys_flag,
+      </if>
+      <if test="transId != null">
+        trans_id,
+      </if>
+      <if test="transState != null">
+        trans_state,
+      </if>
+      <if test="msgKeys != null">
+        msg_keys,
+      </if>
+      <if test="msgIsTran != null">
+        msg_is_tran,
+      </if>
+      <if test="msgTranCheckTimes != null">
+        msg_tran_check_times,
+      </if>
+      <if test="msgUniqKey != null">
+        msg_uniq_key,
+      </if>
+      <if test="msgIsWait != null">
+        msg_is_wait,
+      </if>
+      <if test="msgGroup != null">
+        msg_group,
+      </if>
+      <if test="msgTags != null">
+        msg_tags,
+      </if>
+      <if test="msgRealQueueId != null">
+        msg_real_queue_id,
+      </if>
+      <if test="bizType != null">
+        biz_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="msgBody != null">
+        #{msgBody,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="bornTime != null">
+        #{bornTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeTime != null">
+        #{storeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reconsumeTimes != null">
+        #{reconsumeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="queueId != null">
+        #{queueId,jdbcType=INTEGER},
+      </if>
+      <if test="sysFlag != null">
+        #{sysFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transState != null">
+        #{transState,jdbcType=INTEGER},
+      </if>
+      <if test="msgKeys != null">
+        #{msgKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="msgIsTran != null">
+        #{msgIsTran,jdbcType=BIT},
+      </if>
+      <if test="msgTranCheckTimes != null">
+        #{msgTranCheckTimes,jdbcType=INTEGER},
+      </if>
+      <if test="msgUniqKey != null">
+        #{msgUniqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="msgIsWait != null">
+        #{msgIsWait,jdbcType=BIT},
+      </if>
+      <if test="msgGroup != null">
+        #{msgGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTags != null">
+        #{msgTags,jdbcType=VARCHAR},
+      </if>
+      <if test="msgRealQueueId != null">
+        #{msgRealQueueId,jdbcType=INTEGER},
+      </if>
+      <if test="bizType != null">
+        #{bizType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.trans.consumer.model.TransMsgConsumeRecord">
+    update trans_msg_consume_record
+    <set>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="msgBody != null">
+        msg_body = #{msgBody,jdbcType=VARCHAR},
+      </if>
+      <if test="msgId != null">
+        msg_id = #{msgId,jdbcType=VARCHAR},
+      </if>
+      <if test="bornTime != null">
+        born_time = #{bornTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeTime != null">
+        store_time = #{storeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reconsumeTimes != null">
+        reconsume_times = #{reconsumeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="queueId != null">
+        queue_id = #{queueId,jdbcType=INTEGER},
+      </if>
+      <if test="sysFlag != null">
+        sys_flag = #{sysFlag,jdbcType=INTEGER},
+      </if>
+      <if test="transId != null">
+        trans_id = #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="transState != null">
+        trans_state = #{transState,jdbcType=INTEGER},
+      </if>
+      <if test="msgKeys != null">
+        msg_keys = #{msgKeys,jdbcType=VARCHAR},
+      </if>
+      <if test="msgIsTran != null">
+        msg_is_tran = #{msgIsTran,jdbcType=BIT},
+      </if>
+      <if test="msgTranCheckTimes != null">
+        msg_tran_check_times = #{msgTranCheckTimes,jdbcType=INTEGER},
+      </if>
+      <if test="msgUniqKey != null">
+        msg_uniq_key = #{msgUniqKey,jdbcType=VARCHAR},
+      </if>
+      <if test="msgIsWait != null">
+        msg_is_wait = #{msgIsWait,jdbcType=BIT},
+      </if>
+      <if test="msgGroup != null">
+        msg_group = #{msgGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="msgTags != null">
+        msg_tags = #{msgTags,jdbcType=VARCHAR},
+      </if>
+      <if test="msgRealQueueId != null">
+        msg_real_queue_id = #{msgRealQueueId,jdbcType=INTEGER},
+      </if>
+      <if test="bizType != null">
+        biz_type = #{bizType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.trans.consumer.model.TransMsgConsumeRecord">
+    update trans_msg_consume_record
+    set topic = #{topic,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER},
+      msg_body = #{msgBody,jdbcType=VARCHAR},
+      msg_id = #{msgId,jdbcType=VARCHAR},
+      born_time = #{bornTime,jdbcType=TIMESTAMP},
+      store_time = #{storeTime,jdbcType=TIMESTAMP},
+      reconsume_times = #{reconsumeTimes,jdbcType=INTEGER},
+      queue_id = #{queueId,jdbcType=INTEGER},
+      sys_flag = #{sysFlag,jdbcType=INTEGER},
+      trans_id = #{transId,jdbcType=VARCHAR},
+      trans_state = #{transState,jdbcType=INTEGER},
+      msg_keys = #{msgKeys,jdbcType=VARCHAR},
+      msg_is_tran = #{msgIsTran,jdbcType=BIT},
+      msg_tran_check_times = #{msgTranCheckTimes,jdbcType=INTEGER},
+      msg_uniq_key = #{msgUniqKey,jdbcType=VARCHAR},
+      msg_is_wait = #{msgIsWait,jdbcType=BIT},
+      msg_group = #{msgGroup,jdbcType=VARCHAR},
+      msg_tags = #{msgTags,jdbcType=VARCHAR},
+      msg_real_queue_id = #{msgRealQueueId,jdbcType=INTEGER},
+      biz_type = #{bizType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findTransMsgRecordByTransId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from trans_msg_consume_record
+    where trans_id = #{transId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findTransMsgRecordByMsgId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from trans_msg_consume_record
+    where msg_id = #{msgId,jdbcType=VARCHAR}
+  </select>
+</mapper>

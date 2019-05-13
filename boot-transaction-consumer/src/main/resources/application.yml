@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/trans_msg?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      username: root
+      password: 111111
+  rocketmq:
+    nameServer: 127.0.0.1:9876
+    trans-topic: TRANS-MQ-Topic
+    producer:
+      trans-group: TRANS-MQ-GROUP
+  swagger:
+    title: 分布式事务生产者
+    description: 分布式事务生产者Rest APIs
+    contact-name: 测试
+    license-url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.0
+    base-package: com.trans.consumer.controller
+mybatis:
+    type-aliases-package: com.trans.consumer.model
+    mapper-locations: classpath:mapper/*Mapper.xml
+    configuration.map-underscore-to-camel-case: true
