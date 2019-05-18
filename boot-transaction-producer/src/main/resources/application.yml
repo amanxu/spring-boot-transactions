@@ -13,9 +13,9 @@ spring:
     producer:
       trans-group: TRANS-MQ-GROUP
   swagger:
-    title: ·Ö²¼Ê½ÊÂÎñÉú²úÕß
-    description: ·Ö²¼Ê½ÊÂÎñÉú²úÕßRest APIs
-    contact-name: ²âÊÔ
+    title: äº‹åŠ¡æ¶ˆæ¯API-Swagger
+    description: äº‹åŠ¡æ¶ˆæ¯API Rest APIs
+    contact-name: äº‹åŠ¡æ¶ˆæ¯å¼€å‘
     license-url: http://www.apache.org/licenses/LICENSE-2.0.html
     version: 1.0.0
     base-package: com.trans.producer.controller
@@ -23,3 +23,6 @@ mybatis:
   type-aliases-package: com.trans.producer.model
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration.map-underscore-to-camel-case: true
+logging:
+  level:
+    com.trans.producer: info

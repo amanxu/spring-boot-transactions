@@ -1,6 +1,7 @@
 package com.trans.producer.service.impl;
 
 import com.trans.producer.config.MsgConfigProperties;
+import com.trans.producer.model.TransMsgStateRecord;
 import com.trans.producer.service.ITransMsgService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
@@ -8,10 +9,14 @@ import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @description:
@@ -28,6 +33,9 @@ public class TransMsgServiceImpl implements ITransMsgService {
     @Autowired
     private MsgConfigProperties msgConfigProperties;
 
+    @Resource
+    private RocketMQTemplate rocketMQTemplate;
+
     @Override
     public void producerTransMsg(String transMsg) {
         long timeStamp = System.currentTimeMillis();
@@ -42,7 +50,26 @@ public class TransMsgServiceImpl implements ITransMsgService {
 
             log.info("RocketMQ Send Msg Result:{}", sendResult);
         } catch (MQClientException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+            log.error("producerTransMsg:{}", e);
         }
+    }
+
+    @Override
+    public void templateTransMsg(String msg) {
+        TransMsgStateRecord transMsgStateRecord = new TransMsgStateRecord();
+        transMsgStateRecord.setBizType(1);
+        transMsgStateRecord.setCreateTime(new Date());
+        transMsgStateRecord.setFlag(1);
+        transMsgStateRecord.setMsgBody("amanxu-xiaoxu.nie");
+        transMsgStateRecord.setMsgGroup("Trans-Msg-Topic");
+        transMsgStateRecord.setMsgUniqKey(UUID.randomUUID().toString());
+        transMsgStateRecord.setTransState(2);
+        if (log.isDebugEnabled()) {
+            log.debug("Debug transMsgStateRecord:{}", transMsgStateRecord);
+        }
+        log.debug("Debug transMsgStateRecord:{}", transMsgStateRecord);
+        log.info("Info transMsgStateRecord:{}", transMsgStateRecord);
+        log.warn("Warn transMsgStateRecord:{}", transMsgStateRecord);
+        log.error("Error transMsgStateRecord:{}", transMsgStateRecord);
     }
 }

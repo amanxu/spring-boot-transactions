@@ -10,8 +10,14 @@ public interface ITransMsgService {
     /**
      * 生产者生成事务消息
      *
-     * @param msg
+     * @param transMsg
      */
-    void producerTransMsg(String msg);
+    void producerTransMsg(String transMsg);
+
+    /**
+     * 发送事务消息
+     * @param transMsg
+     */
+    void templateTransMsg(String transMsg);
 
 }

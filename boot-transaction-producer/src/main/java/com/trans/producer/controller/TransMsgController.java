@@ -33,4 +33,11 @@ public class TransMsgController {
         return ResultUtil.success();
     }
 
+    @ApiOperation(value = "生产数据|RocketMQ工具类")
+    @GetMapping(value = "/producerTransMsg")
+    public Result mqTransMsgProducer(@RequestParam("msg") String msg) {
+        transMsgService.templateTransMsg(msg);
+        return ResultUtil.success();
+    }
+
 }
