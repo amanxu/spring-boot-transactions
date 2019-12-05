@@ -16,6 +16,7 @@ public interface ITransMsgService {
 
     /**
      * 发送事务消息
+     *
      * @param transMsg
      */
     void templateTransMsg(String transMsg);

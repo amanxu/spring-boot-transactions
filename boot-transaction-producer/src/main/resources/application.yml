@@ -12,6 +12,10 @@ spring:
     trans-topic: TRANS-MQ-Topic
     producer:
       trans-group: TRANS-MQ-GROUP
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: TRANS-MQ-GROUP
   swagger:
     title: 事务消息API-Swagger
     description: 事务消息API Rest APIs

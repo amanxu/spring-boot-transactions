@@ -31,7 +31,7 @@ public class MQProducerConfig {
      * @return
      * @throws MQClientException
      */
-    @Bean
+  /*  @Bean*/
     public TransactionMQProducer transactionMQProducer() {
 
         TransactionMQProducer producer = new TransactionMQProducer(msgConfigProperties.getTransGroup());
